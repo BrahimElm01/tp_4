@@ -1,8 +1,8 @@
-TP 4 — Hibernate / JPA + MySQL
+# TP 4 — Hibernate / JPA + MySQL
 
 Mini-projet de persistance avec Hibernate 5 / JPA et MySQL 8 autour de deux entités liées : Salle et Machine. Ce guide couvre l’environnement, la config Hibernate et la façon d’exécuter le projet et les tests.
 
-1) Préparer l’environnement
+## 1) Préparer l’environnement
 
 JDK : 8 ou plus récent (validé avec JDK 17)
 
@@ -23,7 +23,7 @@ FLUSH PRIVILEGES;
 
 Éviter d’utiliser root dans les applis ; préférez un utilisateur dédié.
 
-2) Configurer Hibernate (MySQL 8)
+## 2) Configurer Hibernate (MySQL 8)
 
 Fichier : src/main/resources/hibernate.cfg.xml
 
@@ -61,7 +61,7 @@ Les paramètres serverTimezone et useSSL évitent des avertissements.
 
 Ne versionnez jamais de mots de passe réels : mettez un placeholder et configurez-le localement.
 
-3) Modèle de données
+## 3) Modèle de données
 
 Relation Salle (1) ↔ Machine (N). Le côté propriétaire est Machine via @ManyToOne.
 
@@ -69,7 +69,7 @@ Sur Machine, dateAchat est mappée avec @Temporal(TemporalType.DATE) (utilisatio
 
 Des helpers côté Salle peuvent être ajoutés pour gérer la relation bidirectionnelle si besoin.
 
-4) Lancer l’exemple et les tests
+## 4) Lancer l’exemple et les tests
 
 Exécuter la démo (insertion + affichage) : lancer src/main/java/test/Test.java depuis l’IDE.
 
@@ -86,11 +86,11 @@ MachineServiceTest : CRUD + requête nommée findBetweenDate
 
 Les tests préparent et nettoient leurs données ; la base peut être vide au départ.
 
-5) Gestion des ressources
+## 5) Gestion des ressources
 
 La SessionFactory est créée au démarrage. Pour une application standalone, fermer proprement en fin d’exécution : appeler HibernateUtil.shutdown().
 
-6) Résultats attendus (captures à insérer)
+## 6) Résultats attendus (captures à insérer)
 
 Exécution IDE : insertion de quelques salles/machines et affichage en console
 
@@ -104,7 +104,7 @@ En dev, hibernate.hbm2ddl.auto=update accélère la mise en place ; en prod, mig
 
 Si vous voyez “Cannot resolve table” dans l’IDE, synchronisez la connexion de l’onglet Database ou exécutez l’app pour que Hibernate crée le schéma.
 
-7)résultats
+## 7)résultats
 <img width="1905" height="971" alt="hibernate" src="https://github.com/user-attachments/assets/6b993da1-ceaa-488f-8b3c-aee0933a3c16" />
 <img width="1915" height="1012" alt="MachineServicetest" src="https://github.com/user-attachments/assets/c246b613-aba2-494a-8e4e-52f4b3ff3dae" />
 <img width="1907" height="1016" alt="SalleServicetest" src="https://github.com/user-attachments/assets/c151a180-c08c-4e4f-9ca8-b6478f5f068a" />
